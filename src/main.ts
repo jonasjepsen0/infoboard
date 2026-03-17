@@ -6,3 +6,4 @@ fetchMenu().then((menu) => {
     .map((day) => `<p>${day.name}: ${day.dish}</p>`)
     .join('');
 });
+
