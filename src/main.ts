@@ -1,8 +1,10 @@
 import './style.css'
 import { fetchMenu } from './data/menuapi'
 
-fetchMenu().then((menu) => {
-  document.body.innerHTML = menu
-    .map((day) => `<p>${day.name}: ${day.dish}</p>`)
-    .join('');
+const menu = await fetchMenu();
+
+menu.forEach((day: any) => {
+  const p = document.createElement('p');
+  p.textContent = day.name + ': ' + day.dish;
+  document.body.appendChild(p);
 });
