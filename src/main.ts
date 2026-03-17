@@ -1,17 +1,13 @@
-import './style.css'
-
 // src/main.ts
 import { initClock } from './components/clock';
 
-async function initDashboard() {
-  // --- Clock ---
-  initClock('#clock');
+export function initApp() {
+  // Initialize dynamic components
+  initClock('#clock', '#date');
+
+  // Future dynamic components:
+  // initWeather('#weather');
+  // renderMenu(menuData);
+  // renderBuses(busData);
+  // renderActivities(activityData);
 }
-
-// --- Initial load ---
-initDashboard();
-
-// --- Auto-refresh dynamic data every 5 minutes ---
-setInterval(() => {
-  initDashboard();
-}, 5 * 60 * 1000);
