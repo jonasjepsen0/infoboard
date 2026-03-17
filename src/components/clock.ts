@@ -1,23 +1,28 @@
 // src/components/clock.ts
-import { create, get, set } from '../utils';
 
-export function initClock(containerSelector = '#clock') {
-  const container = get(containerSelector);
+export function initClock(clockSelector = '#clock', dateSelector = '#date') {
+  // Use non-null assertion (!) since we guarantee these elements exist after mounting
+  const clockEl = document.querySelector<HTMLElement>(clockSelector)!;
+  const dateEl = document.querySelector<HTMLElement>(dateSelector)!;
 
-  const timeEl = create('div');
-  timeEl.className = 'text-6xl font-bold';
+  // Set the date once
+  const now = new Date();
+  dateEl.textContent = now.toLocaleDateString('da-DK', {
+    weekday: 'long',
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+  });
 
-  set(timeEl, container);
-
+  // Update time every second
   function updateTime() {
     const now = new Date();
-    timeEl.textContent = now.toLocaleTimeString('da-DK', {
+    clockEl.textContent = now.toLocaleTimeString('da-DK', {
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit',
     });
   }
-
   updateTime(); // initial render
-  setInterval(updateTime, 1000); // update every second
+  setInterval(updateTime, 1000);
 }
