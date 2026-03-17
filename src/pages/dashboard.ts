@@ -5,13 +5,12 @@ export function Dashboard() {
   const app = create('div');
   app.className = 'flex h-screen font-sans bg-gray-100';
 
-  // --- Sidebar ---
   const sidebar = create('aside');
-  sidebar.className = 'w-1/3 bg-gradient-to-b from-blue-600 to-blue-400 text-white p-6 flex flex-col';
+  sidebar.className =
+    'w-1/3 bg-gradient-to-b from-blue-600 to-blue-400 text-white p-6 flex flex-col';
 
   const sidebarTop = create('div');
 
-  // Date and Clock placeholders
   const dateEl = create('div');
   dateEl.id = 'date';
   dateEl.className = 'text-lg uppercase mb-2';
@@ -23,11 +22,16 @@ export function Dashboard() {
   set([dateEl, clockEl], sidebarTop);
   set([sidebarTop], sidebar);
 
-  // --- Main Content ---
   const main = create('main');
   main.className = 'flex-1 bg-white p-6';
 
   set([sidebar, main], app);
 
-  return app;
+  return {
+    app,
+    refs: {
+      clockEl,
+      dateEl,
+    },
+  };
 }
