@@ -1,9 +1,8 @@
-import './style.css'
-import { fetchMenu } from './data/menuapi'
+import { initClock } from './components/clock';
 
-fetchMenu().then((menu) => {
-  document.body.innerHTML = menu
-    .map((day) => `<p>${day.name}: ${day.dish}</p>`)
-    .join('');
-});
-
+export function initApp(refs: {
+  clockEl: HTMLElement;
+  dateEl: HTMLElement;
+}) {
+  initClock(refs.clockEl, refs.dateEl);
+}
